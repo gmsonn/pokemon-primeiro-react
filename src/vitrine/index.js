@@ -43,11 +43,11 @@ function Vitrine(){
     }
  
     
-    const pokemons = result.map((item) => {
+    const pokemons = result.map((item, index) => {
 
         return (
 
-            <Col md="3" className="mb-3">
+            <Col md="3" className="mb-3" key={index}>
             <Card>
                 <CardImg top src={item.sprites.front_default} />
                 <CardBody>
@@ -56,7 +56,7 @@ function Vitrine(){
                     <NumberFormat value={(item.forms[0].name.length*15).toFixed()} displayType={'text'} suffix={',00'} thousandSeparator={true} prefix={'R$ '} />
                     <span> ou em 6x de </span>
                     <NumberFormat value={((item.forms[0].name.length*15)/6).toFixed()} displayType={'text'} suffix={',00'} thousandSeparator={true} prefix={'R$ '} />
-                    <div>{item.types.map((tipo) => {return(<Button className="mr-2 mt-2" color="info">{tipo.type.name}</Button>)})}</div>
+                    <span>{item.types.map((tipo, index) => {return(<Button key={index} className="mr-2 mt-2" color="info">{tipo.type.name}</Button>)})}</span>
                 </CardText>
                 <Button value={item.forms[0].name} color="danger" onClick={e => addToCart(e.target.value)}>Adcionar ao carrinho</Button>
                 </CardBody>

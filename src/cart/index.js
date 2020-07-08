@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import * as S from './styled';
 function Cart(){
 
@@ -55,15 +54,15 @@ function Cart(){
 
         <S.Lista style={drop ? {display: "block"} : {display: "none"}}>
                     {
-                        cart.map((item)=> {
+                        cart.map((item, index)=> {
                             if(item.vazio){
                                 return(
-                                <S.Desc>Seu carrinho está vazio</S.Desc>
+                                <S.Desc key={index}>Seu carrinho está vazio</S.Desc>
                                 )
                             }else{
                                 return(
                                     <>
-                                    <S.ListaItem>
+                                    <S.ListaItem key={index}>
                                         <S.FotoItem>
                                             <img src={item.foto}/>
                                         </S.FotoItem>
