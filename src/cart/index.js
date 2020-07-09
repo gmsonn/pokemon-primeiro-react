@@ -4,34 +4,24 @@ function Cart(){
 
     const [drop, setDrop ] = useState(false);
     const [cart, setCart] = useState([]);
-    const [total, setTotal] = useState();
 
     
     function updateCart(){
         let getCart = JSON.parse(localStorage.getItem('cart'));
-        getCart ? getCart = getCart : getCart = [{vazio: true}]
+        if(getCart === "") { getCart = [{vazio: true}]}
         setCart(getCart)
 
     }
-
-    function updateTotal(){
-        let total = cart.map(item => item.preco * item.quantidade).reduce((ant, prox) => ant + prox, 0);
-        if(isNaN(total)){
-            total = 0;
-        }
-        setTotal(total);
-    }
+  
 
     function handleDrop(){
         setDrop(!drop);
         updateCart();
-        updateTotal();
      }
 
      useEffect(() => {
         updateCart();
-        updateTotal();
-     }, [localStorage.getItem('cart')])    
+     }, [])    
 
 
      function handleFechar(){
@@ -61,7 +51,6 @@ function Cart(){
                                 )
                             }else{
                                 return(
-                                    <>
                                     <S.ListaItem key={index}>
                                         <S.FotoItem>
                                             <img src={item.foto}/>
@@ -73,14 +62,10 @@ function Cart(){
                                             <S.Desc>Quantidade: {item.quantidade}</S.Desc>
                                         </S.DadosItem>
                                     </S.ListaItem>
-                                    </>
                                 )
                             }
                         })
                     }
-                    <S.ListaItem>
-                        <S.Desc>Total: R$ {total},00</S.Desc>
-                    </S.ListaItem>
                     <S.FecharCompra onClick={handleFechar}>Fechar Pedido</S.FecharCompra>
         </S.Lista>            
         </>

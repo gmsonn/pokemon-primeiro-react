@@ -53,10 +53,8 @@ function Vitrine(){
                 <CardBody>
                 <CardTitle>{item.forms[0].name}</CardTitle>
                 <CardText>
-                    <NumberFormat value={(item.forms[0].name.length*15).toFixed()} displayType={'text'} suffix={',00'} thousandSeparator={true} prefix={'R$ '} />
-                    <span> ou em 6x de </span>
-                    <NumberFormat value={((item.forms[0].name.length*15)/6).toFixed()} displayType={'text'} suffix={',00'} thousandSeparator={true} prefix={'R$ '} />
-                    <span>{item.types.map((tipo, index) => {return(<Button key={index} className="mr-2 mt-2" color="info">{tipo.type.name}</Button>)})}</span>
+                    <NumberFormat value={(item.forms[0].name.length*15).toFixed()} displayType={'text'} suffix={',00'} thousandSeparator={true} prefix={'R$ '} />     
+                    <span style={{display: "block"}}>{item.types.map((tipo, index) => {return(<Button key={index} className="mr-2 mt-2" color="info">{tipo.type.name}</Button>)})}</span>
                 </CardText>
                 <Button value={item.forms[0].name} color="danger" onClick={e => addToCart(e.target.value)}>Adcionar ao carrinho</Button>
                 </CardBody>
