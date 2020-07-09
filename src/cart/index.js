@@ -8,7 +8,7 @@ function Cart(){
     
     function updateCart(){
         let getCart = JSON.parse(localStorage.getItem('cart'));
-        if(getCart === "") { getCart = [{vazio: true}]}
+        if(!getCart) { getCart = [{vazio: true}]}
         setCart(getCart)
 
     }
@@ -53,7 +53,7 @@ function Cart(){
                                 return(
                                     <S.ListaItem key={index}>
                                         <S.FotoItem>
-                                            <img src={item.foto}/>
+                                            <img src={item.foto} alt={item.nome}/>
                                         </S.FotoItem>
                                         
                                         <S.DadosItem>

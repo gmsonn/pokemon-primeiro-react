@@ -32,7 +32,7 @@ function Vitrine(){
             let pokemonInfo = [];
             oldCart ? pokemonInfo = oldCart : pokemonInfo = [];
             const result = pokemonInfo.findIndex(pokemon => pokemon.nome === value );
-            if(result != '-1'){
+            if(!result > 0){
                 pokemonInfo[result].quantidade = pokemonInfo[result].quantidade + 1
                 console.log(pokemonInfo[result])
             }else{
