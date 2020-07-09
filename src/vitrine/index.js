@@ -12,11 +12,13 @@ function Vitrine(){
 
     useEffect(() => {
 
+        const teste = []
+        
         api.getData().then(response => {
-            response.data.results.map((item) =>{
-                api.getInfo(item.url).then(info => {
-                    result.push(info.data);
-                    setResult([...result]);
+            response.data.results.forEach((item) =>{
+                api.getInfo(item.url).then((info) => {
+                    teste.push(info.data);
+                    setResult([...teste]);
                 })
             })
             
@@ -32,13 +34,15 @@ function Vitrine(){
             let pokemonInfo = [];
             oldCart ? pokemonInfo = oldCart : pokemonInfo = [];
             const result = pokemonInfo.findIndex(pokemon => pokemon.nome === value );
-            if(!result > 0){
+            console.log(result)
+            if(result >= 0){
                 pokemonInfo[result].quantidade = pokemonInfo[result].quantidade + 1
                 console.log(pokemonInfo[result])
             }else{
                 pokemonInfo.push({foto: item.data.sprites.front_default, nome: item.data.forms[0].name, preco: item.data.forms[0].name.length*15, quantidade: 1})
             }
             localStorage.setItem('cart', JSON.stringify(pokemonInfo))
+            
         })
     }
  
